@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using PlatformService.Models;
@@ -13,7 +14,9 @@ namespace PlatformService.Data
         }
         public void CreatePlatform(Platform p)
         {
-            _context.Add(p);
+            if(p is null)
+                throw new ArgumentNullException(nameof(p));
+            _context.Platforms.Add(p);
         }
 
         public IEnumerable<Platform> GetAllPlatforms()
