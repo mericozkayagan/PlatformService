@@ -6084,11 +6084,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Meriç\\PlatformService\\PlatformService.csproj",
+      "projectUniqueName": "C:\\Users\\Meriç\\MicroPrac\\PlatformService\\PlatformService.csproj",
       "projectName": "PlatformService",
-      "projectPath": "C:\\Users\\Meriç\\PlatformService\\PlatformService.csproj",
+      "projectPath": "C:\\Users\\Meriç\\MicroPrac\\PlatformService\\PlatformService.csproj",
       "packagesPath": "C:\\Users\\Meriç\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Meriç\\PlatformService\\obj\\",
+      "outputPath": "C:\\Users\\Meriç\\MicroPrac\\PlatformService\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
