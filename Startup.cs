@@ -31,18 +31,18 @@ namespace PlatformService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            if (_env.IsProduction())
-            {
+            // if (_env.IsProduction())
+            // {
                 Console.WriteLine("using sqlserver db");
                 services.AddDbContext<AppDbContext>(opt=>
                                 opt.UseSqlServer(Configuration.GetConnectionString("PlatformsConn")));
-            }
-            else
-            {
-                Console.WriteLine("using inmem db");
-                services.AddDbContext<AppDbContext>(opt =>
-                                opt.UseInMemoryDatabase("InMem"));
-            }
+            //}
+            // else
+            // {
+            //     Console.WriteLine("using inmem db");
+            //     services.AddDbContext<AppDbContext>(opt =>
+            //                     opt.UseInMemoryDatabase("InMem"));
+            // }
 
             services.AddScoped<IPlatformRepo, PlatformRepo>();
 
@@ -77,7 +77,7 @@ namespace PlatformService
                 endpoints.MapControllers();
             });
 
-            PrepDb.PrepPopulation(app);
+            //PrepDb.PrepPopulation(app, env.IsProduction());
         }
     }
 }
