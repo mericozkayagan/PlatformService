@@ -130,3 +130,4 @@ C:\Users\Meriç\MicroPrac\PlatformService\obj\Debug\net5.0\PlatformService.dll
 C:\Users\Meriç\MicroPrac\PlatformService\obj\Debug\net5.0\ref\PlatformService.dll
 C:\Users\Meriç\MicroPrac\PlatformService\obj\Debug\net5.0\PlatformService.pdb
 C:\Users\Meriç\MicroPrac\PlatformService\obj\Debug\net5.0\PlatformService.genruntimeconfig.cache
+C:\Users\Meriç\MicroPrac\PlatformService\bin\Debug\net5.0\appsettings.Production.json
