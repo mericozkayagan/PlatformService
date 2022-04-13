@@ -7,6 +7,7 @@ using System;
 using PlatformService.Models;
 using PlatformService.SyncDataServices.Http;
 using System.Threading.Tasks;
+using PlatformService.AsyncDataServices;
 
 namespace PlatformService.Controllers
 {
@@ -17,14 +18,17 @@ namespace PlatformService.Controllers
         private readonly IPlatformRepo _repository;
         private readonly IMapper _mapper;
         private readonly ICommandDataClient _commandDataClient;
+        private readonly IMessageBusClient _messageBusClient;
 
         public PlatformsController(IPlatformRepo repository, 
         IMapper mapper, 
-        ICommandDataClient commandDataClient)
+        ICommandDataClient commandDataClient,
+        IMessageBusClient messageBusClient)
         {
             _repository = repository;
             _mapper = mapper;
             _commandDataClient = commandDataClient;
+            _messageBusClient = messageBusClient;
         }
 
         [HttpGet]
@@ -63,6 +67,17 @@ namespace PlatformService.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine($"Could not send synchronusly: {ex.Message}");
+            }
+
+            try
+            {
+                var platformPublishedDto = _mapper.Map<PlatformPublishedDto>(readDto);
+                platformPublishedDto.Event = "Platform published";
+                _messageBusClient.PublishNewPlatform(platformPublishedDto);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Could not send asynchronusly: {ex.Message}");
             }
 
             return CreatedAtRoute(nameof(GetPlatformById), new { Id = readDto.Id}, readDto);
