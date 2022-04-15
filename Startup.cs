@@ -15,6 +15,8 @@ using Microsoft.OpenApi.Models;
 using PlatformService.AsyncDataServices;
 using PlatformService.Data;
 using PlatformService.SyncDataServices.Http;
+using PlatformService.SyncDataServices.Grpc;
+
 
 namespace PlatformService
 {
@@ -49,6 +51,7 @@ namespace PlatformService
 
             services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
             services.AddSingleton<IMessageBusClient, MessageBusClient>();
+            services.AddGrpc();
             services.AddControllers();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddSwaggerGen(c =>
@@ -76,9 +79,10 @@ namespace PlatformService
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapGrpcService<GrpcPlatformService>();
             });
 
             PrepDb.PrepPopulation(app, env.IsProduction());
-        } 
+        }
     }
 }
